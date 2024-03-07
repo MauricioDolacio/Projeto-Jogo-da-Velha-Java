@@ -4,13 +4,13 @@ public class MainJogo {
        public static void main(String[] args) {
            String nomeUm = "";
            String nomeDois = "";
-           while(nomeUm.equals("") || nomeDois.equals("")){
+           while(nomeUm.isEmpty() || nomeDois.isEmpty()){
                 nomeUm = JOptionPane.showInputDialog("Jogador X: ");
-                if(nomeUm.equals("")){
+                if(nomeUm.isEmpty()){
                     JOptionPane.showMessageDialog(null, "Usuário Inválido!"); 
                 }
                 nomeDois = JOptionPane.showInputDialog("Jogador O: ");
-                if(nomeDois.equals("")){
+                if(nomeDois.isEmpty()){
                     JOptionPane.showMessageDialog(null, "Usuário Inválido!");
                 }
            }

@@ -1,4 +1,4 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -12,15 +12,8 @@ public class Jogo extends javax.swing.JFrame {
     private javax.swing.JButton bttn7;
     private javax.swing.JButton bttn8;
     private javax.swing.JButton bttn9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel pontuacaoO;
     private javax.swing.JLabel pontuacaoX;
-    private javax.swing.JButton reiniciarBTTN;
-    private javax.swing.JButton sairBTTN; 
     Jogador jd = new Jogador();
     Jogador ju = new Jogador();
     int contador = 0;
@@ -31,15 +24,16 @@ public class Jogo extends javax.swing.JFrame {
         initComponents();
     }
     private void reset(){
+        contador = 0;
         bttn1.setText("");
-            bttn2.setText("");
-            bttn3.setText("");
-            bttn4.setText("");
-            bttn5.setText("");
-            bttn6.setText("");
-            bttn7.setText("");
-            bttn8.setText("");
-            bttn9.setText("");
+        bttn2.setText("");
+        bttn3.setText("");
+        bttn4.setText("");
+        bttn5.setText("");
+        bttn6.setText("");
+        bttn7.setText("");
+        bttn8.setText("");
+        bttn9.setText("");
     }
     private void fim(){
         if(contador==9){
@@ -84,16 +78,16 @@ public class Jogo extends javax.swing.JFrame {
         bttn9 = new javax.swing.JButton();
         bttn9.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
         bttn7 = new javax.swing.JButton();
-        bttn7.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        bttn7.setFont(new java.awt.Font("Segoe UI", 1, 20));
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel2 = new JLabel();
+        JLabel jLabel3 = new JLabel();
+        JLabel jLabel4 = new JLabel();
+        JLabel jLabel5 = new JLabel();
         pontuacaoX = new javax.swing.JLabel();
         pontuacaoO = new javax.swing.JLabel();
-        sairBTTN = new javax.swing.JButton();
-        reiniciarBTTN = new javax.swing.JButton();
+        JButton sairBTTN = new JButton();
+        JButton reiniciarBTTN = new JButton();
         bttn1.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttn1ActionPerformed(evt);
@@ -286,7 +280,7 @@ public class Jogo extends javax.swing.JFrame {
         pack();
     }                      
     private void bttn1ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn1.getText().equals("")){
+        if(bttn1.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn1.setText("X");
                 bttn1.setForeground(new java.awt.Color(204, 0, 0));
@@ -312,7 +306,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn2ActionPerformed(ActionEvent evt){
-        if(bttn2.getText().equals("")){
+        if(bttn2.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn2.setText("X");
                 bttn2.setForeground(new Color(204, 0, 0));
@@ -334,7 +328,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn3ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn3.getText().equals("")){
+        if(bttn3.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn3.setText("X");
                 bttn3.setForeground(new java.awt.Color(204, 0, 0));
@@ -360,7 +354,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn4ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn4.getText().equals("")){
+        if(bttn4.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn4.setText("X");
                 bttn4.setForeground(new java.awt.Color(204, 0, 0));
@@ -382,7 +376,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn5ActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        if(bttn5.getText().equals("")){
+        if(bttn5.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn5.setText("X");
                 bttn5.setForeground(new java.awt.Color(204, 0, 0));
@@ -408,7 +402,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }                                     
     private void bttn6ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn6.getText().equals("")){
+        if(bttn6.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn6.setText("X");
                 bttn6.setForeground(new java.awt.Color(204, 0, 0));
@@ -430,7 +424,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn7ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn7.getText().equals("")){
+        if(bttn7.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn7.setText("X");
                 bttn7.setForeground(new java.awt.Color(204, 0, 0));
@@ -456,7 +450,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn8ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn8.getText().equals("")){
+        if(bttn8.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn8.setText("X");
                 bttn8.setForeground(new java.awt.Color(204, 0, 0));
@@ -478,7 +472,7 @@ public class Jogo extends javax.swing.JFrame {
         }
     }
     private void bttn9ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn9.getText().equals("")){
+        if(bttn9.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn9.setText("X");
                 bttn9.setForeground(new java.awt.Color(204, 0, 0));
@@ -505,17 +499,23 @@ public class Jogo extends javax.swing.JFrame {
     }                                
     private void sairBTTNActionPerformed(java.awt.event.ActionEvent evt) { 
         if(jd.getPonto()>ju.getPonto()){
-            dispose();
             JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + jd.getName());
+            dispose();
+            System.exit(0);
         }else if(jd.getPonto()< ju.getPonto()){
             JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + ju.getName());
             dispose();
-        }                                         
+            System.exit(0);
+        }else if(jd.getPonto() == ju.getPonto()){
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nEmpatou!");
+            dispose();
+            System.exit(0);
+        }
     }
     private void reiniciarBTTNActionPerformed(java.awt.event.ActionEvent evt) {                                              
         reset();
     }                                             
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -523,13 +523,8 @@ public class Jogo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
