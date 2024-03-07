@@ -1,4 +1,4 @@
-public class JogadorUm{
+public class Jogador{
     private String name;
     private int pontuacao = 0;
     

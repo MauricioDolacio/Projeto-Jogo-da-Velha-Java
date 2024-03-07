@@ -1,4 +1,6 @@
 import javax.swing.JOptionPane;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Jogo extends javax.swing.JFrame {
     private javax.swing.JButton bttn1;
@@ -19,15 +21,13 @@ public class Jogo extends javax.swing.JFrame {
     private javax.swing.JLabel pontuacaoX;
     private javax.swing.JButton reiniciarBTTN;
     private javax.swing.JButton sairBTTN; 
-    JogadorDois jd = new JogadorDois();
-    JogadorUm ju = new JogadorUm();
-    
-    String nomeUm;
-    String nomeDois;
+    Jogador jd = new Jogador();
+    Jogador ju = new Jogador();
     int contador = 0;
+
     public Jogo(String jogadorX, String jogadorO) {
-        this.nomeUm = jogadorX;
-        this.nomeDois = jogadorO;
+        ju.setName(jogadorX);
+        jd.setName(jogadorO);
         initComponents();
     }
     private void reset(){
@@ -55,24 +55,14 @@ public class Jogo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "FIM DE JOGO", "FIM DE JOGO", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    private void jogadorUmPONTO(){
-        ju.setPonto();
-        int ponto = ju.getPonto();
-        String pontuacao = String.valueOf(ponto);
-        pontuacaoX.setText(pontuacao);
+    private void ponto(Jogador j, javax.swing.JLabel pontuador){
+        j.setPonto();
+        pontuador.setText(String.valueOf(j.getPonto()));
         reset();
         contador=0;
-        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor: X");
+        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor:" + j.getName());
     }
-    private void jogadorDoisPONTO(){
-        jd.setPonto();
-        int ponto = jd.getPonto();
-        String pontuacao = String.valueOf(ponto);
-        pontuacaoO.setText(pontuacao);
-        reset();
-        contador=0;
-        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor: O");
-    }
+
     private Jogo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }               
@@ -154,11 +144,11 @@ public class Jogo extends javax.swing.JFrame {
     
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
         jLabel1.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel1.setText(nomeDois + " - O");
+        jLabel1.setText(jd.getName() + " - O");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel2.setText(nomeUm + " - X");
+        jLabel2.setText(ju.getName() + " - X");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
@@ -301,43 +291,43 @@ public class Jogo extends javax.swing.JFrame {
                 bttn1.setText("X");
                 bttn1.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn1.getText().equals(bttn2.getText()) && bttn1.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn1.getText().equals(bttn4.getText()) && bttn1.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn1.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn1.setText("O");
                 bttn1.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn1.getText().equals(bttn2.getText()) && bttn1.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn1.getText().equals(bttn4.getText()) && bttn1.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn1.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn2ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn2ActionPerformed(ActionEvent evt){
         if(bttn2.getText().equals("")){
             if(counter()%2 != 0){
                 bttn2.setText("X");
-                bttn2.setForeground(new java.awt.Color(204, 0, 0));
+                bttn2.setForeground(new Color(204, 0, 0));
                 if(bttn2.getText().equals(bttn1.getText()) && bttn2.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn2.getText().equals(bttn5.getText()) && bttn2.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn2.setText("O");
-                bttn2.setForeground(new java.awt.Color(51, 153, 0));
+                bttn2.setForeground(new Color(51, 153, 0));
                 if(bttn2.getText().equals(bttn1.getText()) && bttn2.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn2.getText().equals(bttn5.getText()) && bttn2.getText().equals(bttn8.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -349,21 +339,21 @@ public class Jogo extends javax.swing.JFrame {
                 bttn3.setText("X");
                 bttn3.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn3.getText().equals(bttn2.getText()) && bttn3.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn3.getText().equals(bttn5.getText()) && bttn3.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn3.getText().equals(bttn6.getText()) && bttn3.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn3.setText("O");
                 bttn3.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn3.getText().equals(bttn2.getText()) && bttn3.getText().equals(bttn1.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn3.getText().equals(bttn5.getText()) && bttn3.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn3.getText().equals(bttn6.getText()) && bttn3.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -375,17 +365,17 @@ public class Jogo extends javax.swing.JFrame {
                 bttn4.setText("X");
                 bttn4.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn4.getText().equals(bttn5.getText()) && bttn4.getText().equals(bttn6.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn4.getText().equals(bttn1.getText()) && bttn4.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn4.setText("O");
                 bttn4.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn4.getText().equals(bttn5.getText()) && bttn4.getText().equals(bttn6.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn4.getText().equals(bttn1.getText()) && bttn4.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -397,21 +387,21 @@ public class Jogo extends javax.swing.JFrame {
                 bttn5.setText("X");
                 bttn5.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn5.getText().equals(bttn4.getText()) && bttn5.getText().equals(bttn6.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn5.getText().equals(bttn2.getText()) && bttn5.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn5.getText().equals(bttn3.getText()) && bttn5.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn5.setText("O");
                 bttn5.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn5.getText().equals(bttn4.getText()) && bttn5.getText().equals(bttn6.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn5.getText().equals(bttn2.getText()) && bttn5.getText().equals(bttn8.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn5.getText().equals(bttn3.getText()) && bttn5.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -423,17 +413,17 @@ public class Jogo extends javax.swing.JFrame {
                 bttn6.setText("X");
                 bttn6.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn6.getText().equals(bttn3.getText()) && bttn6.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn6.getText().equals(bttn5.getText()) && bttn6.getText().equals(bttn4.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn6.setText("O");
                 bttn6.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn6.getText().equals(bttn4.getText()) && bttn6.getText().equals(bttn5.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn6.getText().equals(bttn3.getText()) && bttn6.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -445,21 +435,21 @@ public class Jogo extends javax.swing.JFrame {
                 bttn7.setText("X");
                 bttn7.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn7.getText().equals(bttn5.getText()) && bttn7.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn7.getText().equals(bttn8.getText()) && bttn7.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn7.getText().equals(bttn4.getText()) && bttn7.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn7.setText("O");
                 bttn7.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn7.getText().equals(bttn5.getText()) && bttn7.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn7.getText().equals(bttn8.getText()) && bttn7.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn7.getText().equals(bttn4.getText()) && bttn7.getText().equals(bttn1.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -471,17 +461,17 @@ public class Jogo extends javax.swing.JFrame {
                 bttn8.setText("X");
                 bttn8.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn8.getText().equals(bttn7.getText()) && bttn8.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn8.getText().equals(bttn5.getText()) && bttn8.getText().equals(bttn2.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn8.setText("O");
                 bttn8.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn8.getText().equals(bttn7.getText()) && bttn8.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn8.getText().equals(bttn5.getText()) && bttn8.getText().equals(bttn2.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -493,21 +483,21 @@ public class Jogo extends javax.swing.JFrame {
                 bttn9.setText("X");
                 bttn9.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn9.getText().equals(bttn6.getText()) && bttn9.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn9.getText().equals(bttn7.getText()) && bttn9.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn9.getText().equals(bttn5.getText()) && bttn9.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn9.setText("O");
                 bttn9.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn9.getText().equals(bttn8.getText()) && bttn9.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn9.getText().equals(bttn6.getText()) && bttn9.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn9.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
@@ -516,9 +506,9 @@ public class Jogo extends javax.swing.JFrame {
     private void sairBTTNActionPerformed(java.awt.event.ActionEvent evt) { 
         if(jd.getPonto()>ju.getPonto()){
             dispose();
-            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + nomeDois);
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + jd.getName());
         }else if(jd.getPonto()< ju.getPonto()){
-            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + nomeUm);
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + ju.getName());
             dispose();
         }                                         
     }
