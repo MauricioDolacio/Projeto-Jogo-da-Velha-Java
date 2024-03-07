@@ -37,6 +37,7 @@ public class Jogo extends javax.swing.JFrame {
     }
     private void fim(){
         if(contador==9){
+            JOptionPane.showMessageDialog(null, "FIM DE JOGO", "FIM DE JOGO", JOptionPane.INFORMATION_MESSAGE);
             bttn1.setText("");
             bttn2.setText("");
             bttn3.setText("");
@@ -46,15 +47,14 @@ public class Jogo extends javax.swing.JFrame {
             bttn7.setText("");
             bttn8.setText("");
             bttn9.setText("");
-            JOptionPane.showMessageDialog(null, "FIM DE JOGO", "FIM DE JOGO", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void ponto(Jogador j, javax.swing.JLabel pontuador){
+        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor:" + j.getName());
         j.setPonto();
         pontuador.setText(String.valueOf(j.getPonto()));
         reset();
         contador=0;
-        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor:" + j.getName());
     }
 
     private Jogo() {
