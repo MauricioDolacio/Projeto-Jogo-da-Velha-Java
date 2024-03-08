@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class Jogo extends javax.swing.JFrame {
     private javax.swing.JButton bttn1;
@@ -38,15 +37,7 @@ public class Jogo extends javax.swing.JFrame {
     private void fim(){
         if(contador==9){
             JOptionPane.showMessageDialog(null, "FIM DE JOGO", "FIM DE JOGO", JOptionPane.INFORMATION_MESSAGE);
-            bttn1.setText("");
-            bttn2.setText("");
-            bttn3.setText("");
-            bttn4.setText("");
-            bttn5.setText("");
-            bttn6.setText("");
-            bttn7.setText("");
-            bttn8.setText("");
-            bttn9.setText("");
+            reset();
         }
     }
     private void ponto(Jogador j, javax.swing.JLabel pontuador){
@@ -62,23 +53,23 @@ public class Jogo extends javax.swing.JFrame {
     }               
     private void initComponents() {
         bttn4 = new javax.swing.JButton();
-        bttn4.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn4.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn1 = new javax.swing.JButton();
-        bttn1.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn2 = new javax.swing.JButton();
-        bttn2.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn2.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn6 = new javax.swing.JButton();
-        bttn6.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn6.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn3 = new javax.swing.JButton();
-        bttn3.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn3.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn5 = new javax.swing.JButton();
-        bttn5.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn5.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn8 = new javax.swing.JButton();
-        bttn8.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn8.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn9 = new javax.swing.JButton();
-        bttn9.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn9.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn7 = new javax.swing.JButton();
-        bttn7.setFont(new java.awt.Font("Segoe UI", 1, 20));
+        bttn7.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         JLabel jLabel1 = new JLabel();
         JLabel jLabel2 = new JLabel();
         JLabel jLabel3 = new JLabel();
@@ -88,97 +79,53 @@ public class Jogo extends javax.swing.JFrame {
         pontuacaoO = new javax.swing.JLabel();
         JButton sairBTTN = new JButton();
         JButton reiniciarBTTN = new JButton();
-        bttn1.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn1ActionPerformed(evt);
-            }
-        });
-        bttn2.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn2ActionPerformed(evt);
-            }
-        });
-        bttn3.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn3ActionPerformed(evt);
-            }
-        });
-        bttn4.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn4ActionPerformed(evt);
-            }
-        });
-        bttn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn5ActionPerformed(evt);
-            }
-        });
-        bttn6.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn6ActionPerformed(evt);
-            }
-        });
-        bttn7.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn7ActionPerformed(evt);
-            }
-        });
-        bttn8.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn8ActionPerformed(evt);
-            }
-        });
-        bttn9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn9ActionPerformed(evt);
-            }
-        });
+        bttn1.addActionListener(evt -> bttn1ActionPerformed());
+        bttn2.addActionListener(evt -> bttn2ActionPerformed());
+        bttn3.addActionListener(evt -> bttn3ActionPerformed());
+        bttn4.addActionListener(evt -> bttn4ActionPerformed());
+        bttn5.addActionListener(evt -> bttn5ActionPerformed());
+        bttn6.addActionListener(evt -> bttn6ActionPerformed());
+        bttn7.addActionListener(evt -> bttn7ActionPerformed());
+        bttn8.addActionListener(evt -> bttn8ActionPerformed());
+        bttn9.addActionListener(evt -> bttn9ActionPerformed());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         jLabel1.setForeground(new java.awt.Color(51, 153, 0));
         jLabel1.setText(jd.getName() + " - O");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText(ju.getName() + " - X");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("X -");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("PONTUAÇÃO");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel5.setForeground(new java.awt.Color(102, 153, 0));
         jLabel5.setText("O -");
 
-        pontuacaoX.setFont(new java.awt.Font("Segoe UI", 0, 18)); 
+        pontuacaoX.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
         pontuacaoX.setForeground(new java.awt.Color(255, 0, 0));
         pontuacaoX.setText("0");
 
-        pontuacaoO.setFont(new java.awt.Font("Segoe UI", 0, 18)); 
+        pontuacaoO.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
         pontuacaoO.setForeground(new java.awt.Color(102, 153, 0));
         pontuacaoO.setText("0");
 
-        sairBTTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        sairBTTN.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         sairBTTN.setText("SAIR");
-        sairBTTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairBTTNActionPerformed(evt);
-            }
-        });
+        sairBTTN.addActionListener(evt -> sairBTTNActionPerformed());
 
-        reiniciarBTTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        reiniciarBTTN.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         reiniciarBTTN.setText("REINICIAR");
-        reiniciarBTTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reiniciarBTTNActionPerformed(evt);
-            }
-        });
+        reiniciarBTTN.addActionListener(evt -> reiniciarBTTNActionPerformed());
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -278,8 +225,8 @@ public class Jogo extends javax.swing.JFrame {
         );
 
         pack();
-    }                      
-    private void bttn1ActionPerformed(java.awt.event.ActionEvent evt){
+    }
+    private void bttn1ActionPerformed(){
         if(bttn1.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn1.setText("X");
@@ -305,7 +252,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn2ActionPerformed(ActionEvent evt){
+    private void bttn2ActionPerformed(){
         if(bttn2.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn2.setText("X");
@@ -327,7 +274,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn3ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn3ActionPerformed(){
         if(bttn3.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn3.setText("X");
@@ -353,7 +300,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn4ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn4ActionPerformed(){
         if(bttn4.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn4.setText("X");
@@ -375,7 +322,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn5ActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void bttn5ActionPerformed() {
         if(bttn5.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn5.setText("X");
@@ -401,7 +348,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }                                     
-    private void bttn6ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn6ActionPerformed(){
         if(bttn6.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn6.setText("X");
@@ -423,7 +370,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn7ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn7ActionPerformed(){
         if(bttn7.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn7.setText("X");
@@ -449,7 +396,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn8ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn8ActionPerformed(){
         if(bttn8.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn8.setText("X");
@@ -471,7 +418,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }
-    private void bttn9ActionPerformed(java.awt.event.ActionEvent evt){
+    private void bttn9ActionPerformed(){
         if(bttn9.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn9.setText("X");
@@ -497,7 +444,7 @@ public class Jogo extends javax.swing.JFrame {
             fim();
         }
     }                                
-    private void sairBTTNActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void sairBTTNActionPerformed() {
         if(jd.getPonto()>ju.getPonto()){
             JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + jd.getName());
             dispose();
@@ -512,7 +459,7 @@ public class Jogo extends javax.swing.JFrame {
             System.exit(0);
         }
     }
-    private void reiniciarBTTNActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void reiniciarBTTNActionPerformed() {
         reset();
     }                                             
     public static void main(String[] args) {
@@ -527,11 +474,7 @@ public class Jogo extends javax.swing.JFrame {
                  UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Jogo().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new Jogo().setVisible(true));
     }  
     public int counter(){
         contador+=1;
