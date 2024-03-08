@@ -2,22 +2,21 @@ import javax.swing.JOptionPane;
 
 public class MainJogo {
        public static void main(String[] args) {
-           String nomeUm = "";
-           String nomeDois = "";
-           while(nomeUm.equals("") || nomeDois.equals("")){
-                nomeUm = JOptionPane.showInputDialog("Jogador X: ");
-                if(nomeUm.equals("")){
-                    JOptionPane.showMessageDialog(null, "Usuário Inválido!"); 
-                }
-                nomeDois = JOptionPane.showInputDialog("Jogador O: ");
-                if(nomeDois.equals("")){
-                    JOptionPane.showMessageDialog(null, "Usuário Inválido!");
-                }
-           }
-           
+           String nomeUm = cadastro("Jogador X");
+           String nomeDois = cadastro("Jogador O");
+
             Jogo jg = new Jogo(nomeUm, nomeDois);
             jg.setVisible(true);
-           
-           
+    }
+
+    private static String cadastro(String mensagem){
+           String nome = "";
+           while(nome.isEmpty()) {
+               nome = JOptionPane.showInputDialog(mensagem);
+               if (nome.isEmpty()) {
+                   JOptionPane.showMessageDialog(null, "Usuario Invalido!");
+               }
+           }
+           return nome;
     }
 }

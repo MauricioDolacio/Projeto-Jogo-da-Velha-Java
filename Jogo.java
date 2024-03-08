@@ -1,4 +1,5 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 public class Jogo extends javax.swing.JFrame {
     private javax.swing.JButton bttn1;
@@ -10,191 +11,121 @@ public class Jogo extends javax.swing.JFrame {
     private javax.swing.JButton bttn7;
     private javax.swing.JButton bttn8;
     private javax.swing.JButton bttn9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel pontuacaoO;
     private javax.swing.JLabel pontuacaoX;
-    private javax.swing.JButton reiniciarBTTN;
-    private javax.swing.JButton sairBTTN; 
-    JogadorDois jd = new JogadorDois();
-    JogadorUm ju = new JogadorUm();
-    
-    String nomeUm;
-    String nomeDois;
+    Jogador jd = new Jogador();
+    Jogador ju = new Jogador();
     int contador = 0;
+
     public Jogo(String jogadorX, String jogadorO) {
-        this.nomeUm = jogadorX;
-        this.nomeDois = jogadorO;
+        ju.setName(jogadorX);
+        jd.setName(jogadorO);
         initComponents();
     }
     private void reset(){
+        contador = 0;
         bttn1.setText("");
-            bttn2.setText("");
-            bttn3.setText("");
-            bttn4.setText("");
-            bttn5.setText("");
-            bttn6.setText("");
-            bttn7.setText("");
-            bttn8.setText("");
-            bttn9.setText("");
+        bttn2.setText("");
+        bttn3.setText("");
+        bttn4.setText("");
+        bttn5.setText("");
+        bttn6.setText("");
+        bttn7.setText("");
+        bttn8.setText("");
+        bttn9.setText("");
     }
     private void fim(){
         if(contador==9){
-            bttn1.setText("");
-            bttn2.setText("");
-            bttn3.setText("");
-            bttn4.setText("");
-            bttn5.setText("");
-            bttn6.setText("");
-            bttn7.setText("");
-            bttn8.setText("");
-            bttn9.setText("");
             JOptionPane.showMessageDialog(null, "FIM DE JOGO", "FIM DE JOGO", JOptionPane.INFORMATION_MESSAGE);
+            reset();
         }
     }
-    private void jogadorUmPONTO(){
-        ju.setPonto();
-        int ponto = ju.getPonto();
-        String pontuacao = String.valueOf(ponto);
-        pontuacaoX.setText(pontuacao);
+    private void ponto(Jogador j, javax.swing.JLabel pontuador){
+        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor:" + j.getName());
+        j.setPonto();
+        pontuador.setText(String.valueOf(j.getPonto()));
         reset();
         contador=0;
-        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor: X");
     }
-    private void jogadorDoisPONTO(){
-        jd.setPonto();
-        int ponto = jd.getPonto();
-        String pontuacao = String.valueOf(ponto);
-        pontuacaoO.setText(pontuacao);
-        reset();
-        contador=0;
-        JOptionPane.showMessageDialog(null, "Fim de Jogo!!\nVencedor: O");
-    }
+
     private Jogo() {
         throw new UnsupportedOperationException("Not supported yet.");
     }               
     private void initComponents() {
         bttn4 = new javax.swing.JButton();
-        bttn4.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn4.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn1 = new javax.swing.JButton();
-        bttn1.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn2 = new javax.swing.JButton();
-        bttn2.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn2.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn6 = new javax.swing.JButton();
-        bttn6.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn6.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn3 = new javax.swing.JButton();
-        bttn3.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn3.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn5 = new javax.swing.JButton();
-        bttn5.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn5.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn8 = new javax.swing.JButton();
-        bttn8.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn8.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn9 = new javax.swing.JButton();
-        bttn9.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
+        bttn9.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
         bttn7 = new javax.swing.JButton();
-        bttn7.setFont(new java.awt.Font("Segoe UI", 1, 20)); 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        bttn7.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 20));
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel2 = new JLabel();
+        JLabel jLabel3 = new JLabel();
+        JLabel jLabel4 = new JLabel();
+        JLabel jLabel5 = new JLabel();
         pontuacaoX = new javax.swing.JLabel();
         pontuacaoO = new javax.swing.JLabel();
-        sairBTTN = new javax.swing.JButton();
-        reiniciarBTTN = new javax.swing.JButton();
-        bttn1.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn1ActionPerformed(evt);
-            }
-        });
-        bttn2.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn2ActionPerformed(evt);
-            }
-        });
-        bttn3.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn3ActionPerformed(evt);
-            }
-        });
-        bttn4.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn4ActionPerformed(evt);
-            }
-        });
-        bttn5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn5ActionPerformed(evt);
-            }
-        });
-        bttn6.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn6ActionPerformed(evt);
-            }
-        });
-        bttn7.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn7ActionPerformed(evt);
-            }
-        });
-        bttn8.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                bttn8ActionPerformed(evt);
-            }
-        });
-        bttn9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttn9ActionPerformed(evt);
-            }
-        });
+        JButton sairBTTN = new JButton();
+        JButton reiniciarBTTN = new JButton();
+        bttn1.addActionListener(evt -> bttn1ActionPerformed());
+        bttn2.addActionListener(evt -> bttn2ActionPerformed());
+        bttn3.addActionListener(evt -> bttn3ActionPerformed());
+        bttn4.addActionListener(evt -> bttn4ActionPerformed());
+        bttn5.addActionListener(evt -> bttn5ActionPerformed());
+        bttn6.addActionListener(evt -> bttn6ActionPerformed());
+        bttn7.addActionListener(evt -> bttn7ActionPerformed());
+        bttn8.addActionListener(evt -> bttn8ActionPerformed());
+        bttn9.addActionListener(evt -> bttn9ActionPerformed());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         jLabel1.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel1.setText(nomeDois + " - O");
+        jLabel1.setText(jd.getName() + " - O");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel2.setText(nomeUm + " - X");
+        jLabel2.setText(ju.getName() + " - X");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("X -");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("PONTUAÇÃO");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
         jLabel5.setForeground(new java.awt.Color(102, 153, 0));
         jLabel5.setText("O -");
 
-        pontuacaoX.setFont(new java.awt.Font("Segoe UI", 0, 18)); 
+        pontuacaoX.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
         pontuacaoX.setForeground(new java.awt.Color(255, 0, 0));
         pontuacaoX.setText("0");
 
-        pontuacaoO.setFont(new java.awt.Font("Segoe UI", 0, 18)); 
+        pontuacaoO.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 18));
         pontuacaoO.setForeground(new java.awt.Color(102, 153, 0));
         pontuacaoO.setText("0");
 
-        sairBTTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        sairBTTN.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         sairBTTN.setText("SAIR");
-        sairBTTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairBTTNActionPerformed(evt);
-            }
-        });
+        sairBTTN.addActionListener(evt -> sairBTTNActionPerformed());
 
-        reiniciarBTTN.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+        reiniciarBTTN.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 18));
         reiniciarBTTN.setText("REINICIAR");
-        reiniciarBTTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reiniciarBTTNActionPerformed(evt);
-            }
-        });
+        reiniciarBTTN.addActionListener(evt -> reiniciarBTTNActionPerformed());
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,238 +225,244 @@ public class Jogo extends javax.swing.JFrame {
         );
 
         pack();
-    }                      
-    private void bttn1ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn1.getText().equals("")){
+    }
+    private void bttn1ActionPerformed(){
+        if(bttn1.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn1.setText("X");
                 bttn1.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn1.getText().equals(bttn2.getText()) && bttn1.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn1.getText().equals(bttn4.getText()) && bttn1.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn1.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn1.setText("O");
                 bttn1.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn1.getText().equals(bttn2.getText()) && bttn1.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn1.getText().equals(bttn4.getText()) && bttn1.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn1.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn2ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn2.getText().equals("")){
+    private void bttn2ActionPerformed(){
+        if(bttn2.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn2.setText("X");
-                bttn2.setForeground(new java.awt.Color(204, 0, 0));
+                bttn2.setForeground(new Color(204, 0, 0));
                 if(bttn2.getText().equals(bttn1.getText()) && bttn2.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn2.getText().equals(bttn5.getText()) && bttn2.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn2.setText("O");
-                bttn2.setForeground(new java.awt.Color(51, 153, 0));
+                bttn2.setForeground(new Color(51, 153, 0));
                 if(bttn2.getText().equals(bttn1.getText()) && bttn2.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn2.getText().equals(bttn5.getText()) && bttn2.getText().equals(bttn8.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn3ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn3.getText().equals("")){
+    private void bttn3ActionPerformed(){
+        if(bttn3.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn3.setText("X");
                 bttn3.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn3.getText().equals(bttn2.getText()) && bttn3.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn3.getText().equals(bttn5.getText()) && bttn3.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn3.getText().equals(bttn6.getText()) && bttn3.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn3.setText("O");
                 bttn3.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn3.getText().equals(bttn2.getText()) && bttn3.getText().equals(bttn1.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn3.getText().equals(bttn5.getText()) && bttn3.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn3.getText().equals(bttn6.getText()) && bttn3.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn4ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn4.getText().equals("")){
+    private void bttn4ActionPerformed(){
+        if(bttn4.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn4.setText("X");
                 bttn4.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn4.getText().equals(bttn5.getText()) && bttn4.getText().equals(bttn6.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn4.getText().equals(bttn1.getText()) && bttn4.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn4.setText("O");
                 bttn4.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn4.getText().equals(bttn5.getText()) && bttn4.getText().equals(bttn6.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn4.getText().equals(bttn1.getText()) && bttn4.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn5ActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        if(bttn5.getText().equals("")){
+    private void bttn5ActionPerformed() {
+        if(bttn5.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn5.setText("X");
                 bttn5.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn5.getText().equals(bttn4.getText()) && bttn5.getText().equals(bttn6.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn5.getText().equals(bttn2.getText()) && bttn5.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn5.getText().equals(bttn3.getText()) && bttn5.getText().equals(bttn7.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn5.setText("O");
                 bttn5.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn5.getText().equals(bttn4.getText()) && bttn5.getText().equals(bttn6.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn5.getText().equals(bttn2.getText()) && bttn5.getText().equals(bttn8.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn5.getText().equals(bttn3.getText()) && bttn5.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }                                     
-    private void bttn6ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn6.getText().equals("")){
+    private void bttn6ActionPerformed(){
+        if(bttn6.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn6.setText("X");
                 bttn6.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn6.getText().equals(bttn3.getText()) && bttn6.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn6.getText().equals(bttn5.getText()) && bttn6.getText().equals(bttn4.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn6.setText("O");
                 bttn6.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn6.getText().equals(bttn4.getText()) && bttn6.getText().equals(bttn5.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn6.getText().equals(bttn3.getText()) && bttn6.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn7ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn7.getText().equals("")){
+    private void bttn7ActionPerformed(){
+        if(bttn7.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn7.setText("X");
                 bttn7.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn7.getText().equals(bttn5.getText()) && bttn7.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn7.getText().equals(bttn8.getText()) && bttn7.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn7.getText().equals(bttn4.getText()) && bttn7.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn7.setText("O");
                 bttn7.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn7.getText().equals(bttn5.getText()) && bttn7.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn7.getText().equals(bttn8.getText()) && bttn7.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn7.getText().equals(bttn4.getText()) && bttn7.getText().equals(bttn1.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn8ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn8.getText().equals("")){
+    private void bttn8ActionPerformed(){
+        if(bttn8.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn8.setText("X");
                 bttn8.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn8.getText().equals(bttn7.getText()) && bttn8.getText().equals(bttn9.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn8.getText().equals(bttn5.getText()) && bttn8.getText().equals(bttn2.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn8.setText("O");
                 bttn8.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn8.getText().equals(bttn7.getText()) && bttn8.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn8.getText().equals(bttn5.getText()) && bttn8.getText().equals(bttn2.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }
-    private void bttn9ActionPerformed(java.awt.event.ActionEvent evt){
-        if(bttn9.getText().equals("")){
+    private void bttn9ActionPerformed(){
+        if(bttn9.getText().isEmpty()){
             if(counter()%2 != 0){
                 bttn9.setText("X");
                 bttn9.setForeground(new java.awt.Color(204, 0, 0));
                 if(bttn9.getText().equals(bttn6.getText()) && bttn9.getText().equals(bttn3.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn9.getText().equals(bttn7.getText()) && bttn9.getText().equals(bttn8.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }else if(bttn9.getText().equals(bttn5.getText()) && bttn9.getText().equals(bttn1.getText())){
-                    jogadorUmPONTO();
+                    ponto(ju, pontuacaoX);
                 }
             }else{
                 bttn9.setText("O");
                 bttn9.setForeground(new java.awt.Color(51, 153, 0));
                 if(bttn9.getText().equals(bttn8.getText()) && bttn9.getText().equals(bttn7.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn9.getText().equals(bttn6.getText()) && bttn9.getText().equals(bttn3.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }else if(bttn9.getText().equals(bttn5.getText()) && bttn1.getText().equals(bttn9.getText())){
-                    jogadorDoisPONTO();
+                    ponto(jd, pontuacaoO);
                 }
             }
             fim();
         }
     }                                
-    private void sairBTTNActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void sairBTTNActionPerformed() {
         if(jd.getPonto()>ju.getPonto()){
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + jd.getName());
             dispose();
-            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + nomeDois);
+            System.exit(0);
         }else if(jd.getPonto()< ju.getPonto()){
-            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + nomeUm);
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nVencedor: " + ju.getName());
             dispose();
-        }                                         
+            System.exit(0);
+        }else if(jd.getPonto() == ju.getPonto()){
+            JOptionPane.showMessageDialog(null, "Encerrando!!\nEmpatou!");
+            dispose();
+            System.exit(0);
+        }
     }
-    private void reiniciarBTTNActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void reiniciarBTTNActionPerformed() {
         reset();
     }                                             
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -533,20 +470,11 @@ public class Jogo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Jogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Jogo().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new Jogo().setVisible(true));
     }  
     public int counter(){
         contador+=1;
